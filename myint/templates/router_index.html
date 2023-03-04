@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Router List{% endblock %}
+{% block main_heading %}{% endblock %}  
+{% block site_css %} {% endblock %}
+
+{% block body %}
+
+        <h1>List of All Routers:</h1>
+        
+	      <label for="id_ID">Filter Name:</label>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Name.." title="Type in a name">
+        <hr/>
+        
+        <div class="row gx-4 gx-lg-5">
+          <div class="col-md-4 mb-2">
+            <div class="card h-100">
+              <div class="card-body">
+                            <table class="table table-success " id="myTable">
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>IP</th>
+                                    <th>Interface</th>                          
+                                </tr>   
+                                {% for x in members %}  
+                                    <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ x.Name }}</td>
+                                    <td>{{ x.Type }}</td>
+                                    <td>{{ x.IP }}</td>
+                                    <td><a href="routerints/{{ x.Name }}"  class="btn btn-primary " > Show Interfaces</a></td>
+                                    </tr>  
+                                {% endfor %}
+                            </table>         
+                  </p>  
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <script>
+            function myFunction() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+        </script>
+
+{% endblock %}
+

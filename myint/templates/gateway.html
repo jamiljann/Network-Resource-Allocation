@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %} Service Allocation{% endblock %}
+    
+    {% block main_heading %}
+        Allocating a new VLAN for DSLAM's Customers 
+    {% endblock %}
+
+    {% block header_content %} 
+        <hr/>
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h2>Input Device IP:</h2>      
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="text" id="DSLAM_IP" name="input_DSLAM_IP" required minlength="4" maxlength="15" placeholder="Input port's IP"/>
+                                <br> <br>     
+                            <button class="btn btn-primary" type="submit" name="button_DSLAM">Find Gateway</button>
+                            <br> <br>
+                        </form> 
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    {% endblock %}
+       
+    {% block body %}
+    {% if gateway %}
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+        <hr/>
+        <h2> Gateway Port: </h2>
+        <table border="1">
+            <tr>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>Customer-Profile</th>
+            <th>VPN</th>
+            <th>Encapsulation</th>
+            <th>Port Type</th>
+            </tr>   
+            <tr>
+             
+                <tr>
+                <td>{{ gateway.Router_Name.Name }}</td>
+                <td>{{ gateway.int_Name }}</td>
+                <td>{{ gateway.Description }}</td>
+                <td>{{ gateway.int_ID }}</td>
+                <td>{{ gateway.IP }}</td>
+                <td>{{ gateway.Profile }}</td>
+                <td>{{ gateway.VPN }}</td>
+                <td>{{ gateway.Encapsulation }}</td>
+                <td>{{ gateway.Int_type }}</td>
+                </tr>
+           
+        </table>
+        <hr/>
+        <h2> Exist Subports: </h2>
+        <table border="1">
+            <tr>
+            <th>No.</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>Customer-Profile</th>
+            <th>VPN</th>
+            <th>Encapsulation</th>
+            <th>Port Type</th>
+            </tr>   
+            {% for x in subport %}  
+                <tr>
+                <td>{{ forloop.counter  }}</td>
+                <td>{{ x.Router_Name.Name }}</td>
+                <td>{{ x.int_Name }}</td>
+                <td>{{ x.Description }}</td>
+                <td>{{ x.int_ID }}</td>
+                <td>{{ x.IP }}</td>
+                <td>{{ x.Profile }}</td>
+                <td>{{ x.VPN }}</td>
+                <td>{{ x.Encapsulation }}</td>
+                <td>{{ x.Int_type }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr/>
+
+        <h2> Exist Reserved Ports: </h2>
+        <table border="1">
+            <tr>
+            <th>No.</th>
+            <th>Type of Service</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>User Vlan</th>
+            <th>PE Vlan</th>
+            <th>Encapsulation</th>
+            <th>Date</th>
+            <th>More Information</th>
+            <th>Provisioned</th>
+            </tr>   
+            {% for x in reserveport %}  
+                <tr>
+                <td>{{ forloop.counter  }}</td>
+                <td>{{ x.Service }}</td>
+                <td>{{ x.Router_Name.Name }}</td>
+                <td>{{ x.Newint }}</td>
+                <td>{{ x.Des }}</td>
+                <td>{{ x.Peygiri }}</td>
+                <td>{{ x.IP }}</td>
+                <td>{{ x.VLAN }}</td>
+                <td>{{ x.PE }}</td>
+                <td>{{ x.Encap }}</td>
+                <td>{{ x.Date }}</td>
+                <td>{{ x.Info }}</td>
+                <td>{{ x.Dayer }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <hr/>
+        <hr/>
+
+
+        <h2>Do You want to make a new port reserved?</h2>
+        <form action="/myint/reserve" method="GET">
+            {% csrf_token %}   
+                <button class="btn btn-primary" type="submit" name="button_Reserve">Reserve</button>
+            <br> <br>
+        </form> 
+        <hr/>
+    
+    
+    
+    
+    {% else %}
+            <h2>There is no Gateway for this IP or this IP is incorrect. Please Try again...</h2>
+    {% endif %}
+    {% endblock %}
+

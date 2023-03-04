@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} DATA Department of TCI Khorasan{% endblock %}
+         
+{% block main_heading %}Select type of Report you want: </p> </p>{% endblock %}       
+            
+{% block body %} 
+            
+    <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Reserve Report</h2>
+                        <p class="card-text">In this report there is a list of DSLAM ports reserved.</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'reservelist' %}">More Info</a></div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Router Report</h2>
+                        <p class="card-text">In this report there is a list of switches and routers.</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'routerlist' %}">More Info</a></div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">IP Report</h2>
+                        <p class="card-text">In this report there is a list of all IPs.</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'ipindex' %}">More Info</a></div>
+                </div>
+            </div>
+
+
+                
+        
+{% endblock %} 
+

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+    {% block title %} About Us{% endblock %}
+        
+    {% block main_heading %}
+        This Site has been designed and deployed by Seyed Jamil Sabbaghi Faragard.
+        <hr/>
+    {% endblock %}
+
+    {% block header_content %}
+        <p>Support me on Linked: https://www.linkedin.com/in/seyed-jamil-sabbaghi-faragard/ </p>
+        <hr/>
+        <hr/>
+    {% endblock %}
+       
+    {% block body %} 
+        Contact me on jsabaghi@gmail.com
+
+        <form action="mailto:jsabaghi@gmail.com" method="post" encrypt="text/plain">
+            <label>Your Name:</label>
+            <input type="text" name="YourName" id="" value=""> <br>
+            <p></p>
+            <label>Your Email:</label>
+            <input type="email" name="YourName" id="" value=""> <br>
+            <p></p>
+            <label>Your Message:</label>
+            <textarea name="YourMessage" rows="10" cols="30"></textarea><br>
+            <p></p>
+            <input type="submit" name="YourName" id="" value="Submit"> <br>
+        </form>
+	<hr/>
+    <hr/>
+    {% endblock %}
+
