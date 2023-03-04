@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+    {% block title %} Login {% endblock %}
+    {% block site_css %} 
+        <link rel="stylesheet" href="{% static 'base.css' %}" />
+    {% endblock %}
+        
+    {% block main_heading %}
+        <h1>Login</h1>
+    {% endblock %}
+
+    {% block header_content %} {% endblock %}
+       
+    {% block body %} 
+        
+            {% if messages %}
+                {% for message in messages %}
+                        {{ message }}                        
+                {% endfor%}
+            {% endif%}
+            <br/>
+       
+        <div class="col-md-4 mb-5">
+            <div class="card h-100">
+                <div class="card-body">
+                    <p class="card-text">
+                        
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">User Name</label>
+                                <input type="Text" class="form-control" name="username" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>         
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form> 
+                          
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
