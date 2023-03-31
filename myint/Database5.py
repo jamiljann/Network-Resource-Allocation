@@ -112,15 +112,3 @@ class A_database():
         
     ############################
 
-
-#new_database = A_database("db2.sqlite3", "myint_interface")       
-#new_database.Create_table()
-#record = [0,"Router_Name","int_Name","Description","int_ID","IP","Profile","Profile"]
-#new_database.Insert_record(record)
-
-#my_sesult = new_database.Select_all()
-#for row in my_sesult:
-#    print(row)
-#    if row['Profile'] == '10M':
-#       print("Interface Profile is ", row['Profile'])
-
