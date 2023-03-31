@@ -32,7 +32,6 @@ class Fill_database():
         
         self.Delete_records()
         self.Read_Router_Files()  
-        #self.Migration()
     
     #++++++++++++++++++++++++++++++++++++++++++   
     def Delete_records(self):
@@ -54,7 +53,7 @@ class Fill_database():
         my_parameter = ""
             
         start_param = characters.find(start, step)
-        if start_param!= -1:
+        if start_param != -1:
             end_param = characters.find(end, start_param +1)
             if end_param != -1 :
                 if ((end_param - start_param) < 6000) :
