@@ -33,46 +33,7 @@ class Fill_database():
         self.Delete_records()
         self.Read_Router_Files()  
         #self.Migration()
-    #++++++++++++++++++++++++++++++++++++++++++   
-    def Migration(self):
-        i=0
-        
-        #last_res = ReservePort1()Downloads/8-1-2023-V2/manage.py
-        last_database = A_database("/home/jamil/Downloads/8-1-2023-V2/db.sqlite3", "myint_reserveport1")
-        last_records = last_database.Select_all()
-        last_database.Close_connect()
-        #print('++++++++++++', last_records)
-        for row in last_records:
-            print('++++++++++++',i ,'=', row[0])
-            print('++++++++++++Router_Name',i ,'=', row[1])
-            print('++++++++++++newID',i ,'=', row[2])
-            print('++++++++++++newint',i ,'=', row[3])
-            print('++++++++++++Description',i ,'=', row[4])
-            print('++++++++++++IP',i ,'=', row[5])
-            print('++++++++++++VLAN',i ,'=', row[6])
-            print('++++++++++++Rdate',i ,'=', row[7])
-            print('++++++++++++',i ,'=', row[8])
-            print('++++++++++++Encapsulation',i ,'=', row[9])
-            print('++++++++++++PE_vlan',i ,'=', row[10])
-            print('++++++++++++User_type',i ,'=', row[11])
-            print('++++++++++++',i ,'=', row[12])
-            print('++++++++++++',i ,'=', row[13], '\n')
-            i+=1
-            new_res = ReservePort(
-                Router =   Router.objects.get(Name = row[1]),
-                Newint =   row[3],
-                Peygiri =  row[2],
-                Des =      row[4],
-                IP =       row[5],
-                VLAN =     row[6],
-                PE =       row[10],
-                Date =     row[7],
-                Dayer =    False,
-                Info =     ''
-            )
-            new_res.save()
-        
-        
+    
     #++++++++++++++++++++++++++++++++++++++++++   
     def Delete_records(self):
         Interface.objects.all().delete()
