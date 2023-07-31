@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Select CFG Files {% endblock %}        
+{% block main_heading %}  Select Router Config Files {% endblock %}
+{% block header_content %}  {% endblock %}
+       
+{% block body %}  
+  <form method = 'POST' class="col s12" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{new_form.as_p}}
+
+    <!--Below is our main file upload input -->
+    <input type = "file" name = 'selected_file'>
+    <br> <br>
+    <p><button type = "submit" class = "waves-effect waves-light btn" style = "background-color: teal">Import</button></p>
+  </form>
+  
+{% endblock %}

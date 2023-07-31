@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Router Config Files {% endblock %}        
+{% block main_heading %} Router Config Files {% endblock %}
+{% block header_content %}Table Contains {{ numbers }} records {% endblock %}
+    
+    {% block body %} 
+      
+    <table border="1" id="myTable">
+      <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Show Run</th>
+          <th>File Date</th>                           
+      </tr>   
+        {% for x in members %}  
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ x.Name }}</td>
+            <td>{{ x.Showrun }}</td>
+            <td>{{ x.Filedate }}</td>
+          </tr>  
+        {% endfor %}
+    </table>         
+
+    {% endblock %}

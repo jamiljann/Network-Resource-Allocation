@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}   
+{% block title %} Router Home {% endblock %}        
+{% block main_heading %}  Router Config Files {% endblock %}
+{% block header_content %}  {% endblock %}
+       
+    {% block body %} 
+        <p>
+            <ul>
+                <li><a href="{% url 'routers:importfile' %}">Import Config Files</a></li>
+                <li><a href="{% url 'routers:update' %}">Update database</a></li>
+                <li><a href="{% url 'routers:delete' %}">Delete database</a></li>
+                <li><a href="{% url 'routers:list' %}">Router list</a></li>
+            </ul>
+        </p>   
+
+    {% endblock %}
