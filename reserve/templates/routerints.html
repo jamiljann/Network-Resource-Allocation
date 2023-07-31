@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %} Interfaces{% endblock %}
+
+       
+    {% block body %} 
+      <h1>List of All Interfaces of: {{ router_name }} ( {{ membernumber }} records)</h1>
+      <hr/>
+       
+        
+	    <label for="id_ID">Filter Interface:</label>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Interface.." title="Type in a name">
+        <hr/>
+
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+        <table border="1" table id="myTable">
+            <tr>
+            <th>No.</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>Customer-Profile</th>
+            <th>VPN</th>
+            <th>Encapsulation</th>
+            <th>Port Type</th>
+            <th>Reserve</th>
+
+            </tr>   
+            <tr>
+            {% for x in members %}
+                <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ x.Router_Name }}</td>
+                <td>{{ x.int_Name }}</td>
+                <td>{{ x.Description }}</td>
+                <td>{{ x.int_ID }}</td>
+                <td>{{ x.IP }}</td>
+                <td>{{ x.Profile }}</td>
+                <td>{{ x.VPN }}</td>
+                <td>{{ x.Encapsulation }}</td>
+                <td>{{ x.Int_type }}</td>
+                <td><a href="{% url 'reserve-int' x.Router_Name %}"  class="btn btn-primary " > Submit</a></td>
+
+                </tr>
+               
+            {% endfor %}
+            </table>
+        
+
+
+            <script>
+                function myFunction() {
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }       
+                  }
+                }
+            </script>
+
+    {% endblock %}

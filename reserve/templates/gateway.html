@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block title %} Service Allocation{% endblock %}
+    
+    {% block main_heading %}
+        Reserve a new Customer
+    {% endblock %}
+
+    {% block header_content %} 
+        <hr/>
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            <h2>Port on DSLAM</h2>
+                            <h4>Input Dslam's IP:</h4>      
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="text" id="DSLAM_IP" name="input_DSLAM_IP" required minlength="4" maxlength="15" placeholder="..."/>
+                                    <br> <br>     
+                                <button class="btn btn-primary" type="submit" name="button_DSLAM">Find Gateway</button>
+                                <br> <br>
+                            </form> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            <h2>Port on Switche</h2>
+                            <h4>Select a switch:</h4>      
+                            <form  method="POST">
+                                {% csrf_token %}
+                                <select id = "switches_id" name="switches">
+                                    {% for x in routers %} 
+                                        <option value="{{ x }}">{{ x }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br> <br>     
+                                <button class="btn btn-primary" type="submit" name="button_Switch" ">Reserve</button>
+                               
+                                <br> <br>
+                            </form> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    {% endblock %}
+       
+    {% block body %}
+    {% if gateway %}
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+        <hr/>
+        <h2 style="text-align: center; background-color: orange;"> Gateway Port: </h2>
+        <table border="1" style="text-align: center; background-color: orange;">
+            <tr>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>Customer-Profile</th>
+            <th>VPN</th>
+            <th>Encapsulation</th>
+            <th>Port Type</th>
+            </tr>   
+            <tr>
+             
+                <tr>
+                <td>{{ gateway.Router_Name.Name }}</td>
+                <td>{{ gateway.int_Name }}</td>
+                <td>{{ gateway.Description }}</td>
+                <td>{{ gateway.int_ID }}</td>
+                <td>{{ gateway.IP }}</td>
+                <td>{{ gateway.Profile }}</td>
+                <td>{{ gateway.VPN }}</td>
+                <td>{{ gateway.Encapsulation }}</td>
+                <td>{{ gateway.Int_type }}</td>
+                </tr>
+           
+        </table>
+        <hr/>
+        <h2 style="text-align: center;"> Exist Subports: </h2>
+        <table border="1" style="text-align: center;">
+            <tr>
+            <th>No.</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>Customer-Profile</th>
+            <th>VPN</th>
+            <th>Encapsulation</th>
+            <th>Port Type</th>
+            </tr>   
+            {% for x in subport %}  
+                <tr>
+                <td>{{ forloop.counter  }}</td>
+                <td>{{ x.Router_Name.Name }}</td>
+                <td>{{ x.int_Name }}</td>
+                <td>{{ x.Description }}</td>
+                <td>{{ x.int_ID }}</td>
+                <td>{{ x.IP }}</td>
+                <td>{{ x.Profile }}</td>
+                <td>{{ x.VPN }}</td>
+                <td>{{ x.Encapsulation }}</td>
+                <td>{{ x.Int_type }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr/>
+
+        <h2 style="text-align: center; background-color: rgb(207, 160, 192);"> Exist Reserved Ports: </h2>
+        <table style="text-align: center; background-color: rgb(207, 160, 192); border:2px solid violet">
+            <tr>
+            <th>No.</th>
+            <th>Type of Service</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>User Vlan</th>
+            <th>PE Vlan</th>
+            <th>Encapsulation</th>
+            <th>Date</th>
+            <th>More Information</th>
+            <th>Provisioned</th>
+            </tr>   
+            {% for x in reserveport %}  
+                <tr>
+                <td>{{ forloop.counter  }}</td>
+                <td>{{ x.Service }}</td>
+                <td>{{ x.Router_Name.Name }}</td>
+                <td>{{ x.Newint }}</td>
+                <td><strong>{{ x.Des }}</strong></td>
+                <td>{{ x.Peygiri }}</td>
+                <td>{{ x.IP }}</td>
+                <td><mark>{{ x.VLAN }}</mark></td>
+                <td>{{ x.PE }}</td>
+                <td>{{ x.Encap }}</td>
+                <td>{{ x.Date }}</td>
+                <td>{{ x.Info }}</td>
+                <td>{{ x.Dayer }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <hr/>
+        <hr/>
+
+
+        <h2 style="text-align: center; background-color: rgb(27, 163, 79);">Do You want to make a new port reserved?</h2>
+        <form action="/reserve" method="GET">
+            {% csrf_token %}   
+                <button class="btn btn-primary" type="submit" name="button_Reserve" style="text-align: center;">Reserve</button>
+            <br> <br>
+        </form> 
+        <hr/>
+    
+    
+    
+    
+    {% else %}
+            <h2>There is no Gateway for this IP or this IP is incorrect. Please Try again...</h2>
+    {% endif %}
+
+
+
+
+
+
+    <script>
+        function select1() {
+          var input = document.getElementById("switches_id"),value;
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+    </script>
+
+
+
+
+
+    {% endblock %}
+

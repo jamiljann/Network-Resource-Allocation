@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Reserve a switch Port {% endblock %}
+{% block main_heading %}
+{% endblock %}  
+
+{% block body %} 
+    <h1>Reserve a switch Port: </h1>
+    <div class="col-md-4 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <p class="card-text">
+
+                <form action="" method="POST">
+                    {% csrf_token %} 
+                    {{ form.as_p }}  
+                    <button class="btn btn-primary " type="submit" name="button_Reserve">Submit</button>
+                    <input class="btn btn-primary" type="submit" value='Cancel' name="cancel" onclick="window.location='{% url 'interfaces:home' %}'; return false;">                          
+                    <br> <br>  
+                </form> 
+                </p>
+            </div>
+        </div>
+    </div>  
+
+{% endblock %}

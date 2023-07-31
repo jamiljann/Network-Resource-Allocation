@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} DATA Department of TCI Khorasan{% endblock %}
+         
+{% block main_heading %}Input Customer's Specifications:{% endblock %}       
+            
+{% block body %} 
+    <div class="col-md-4 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <p class="card-text">
+                    
+                   
+                 
+
+                    <form action="" method="POST">
+                        {% csrf_token %} 
+                        {{ form.as_p }}  
+                        <button class="btn btn-primary" type="submit" name="button_Reserve">Submit</button>
+                        <br> <br>  
+                    </form> 
+                    
+                </p>
+            </div>
+        </div>
+    </div>  
+    
+    
+{% endblock %}

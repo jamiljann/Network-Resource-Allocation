@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}   
+{% block title %} Reserve Home {% endblock %}        
+{% block main_heading %}  Reserve port {% endblock %}
+{% block header_content %}  {% endblock %}
+       
+    {% block body %} 
+        <p>
+            <ul>
+                <li><a href="{% url 'reserve:gateway' %}">Reserve port</a></li>
+                <li><a href="{% url 'reserve:delete' %}">Delete </a></li>
+                <li><a href="{% url 'reserve:show-adsl' %}">ADSL Reserved List</a></li>
+                <li><a href="{% url 'reserve:show-switch' %}">Switch Reserved List</a></li>
+
+            </ul>
+        </p>   
+
+    {% endblock %}

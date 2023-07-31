@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} DATA Department of TCI Khorasan{% endblock %}
+{% block main_heading %}Successful Reserve Result{% endblock %}  
+
+{% block body %}
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+    <hr/>
+    <h2> Exist Reserved Ports: </h2>
+        <table border="1">
+            <tr>
+            <th>No.</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>User Vlan</th>
+            <th>PE Vlan</th>
+            <th>Encapsulation</th>
+            <th>Date</th>
+            <th>More Information</th>
+            <th>Creator</th>
+            </tr>   
+            {% for x in {% extends 'base.html' %}
+{% load static %}
+{% block title %} DATA Department of TCI Khorasan{% endblock %}
+{% block main_heading %}Successful Reserve Result{% endblock %}  
+
+{% block body %}
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+    <hr/>
+    <h2> Exist Reserved Ports: </h2>
+        <table border="1">
+            <tr>
+            <th>No.</th>
+            <th>Router Name</th>
+            <th>Interface Name</th>
+            <th>Description</th>
+            <th>Customer-ID</th>
+            <th>Customer-IP</th>
+            <th>User Vlan</th>
+            <th>PE Vlan</th>
+            <th>Encapsulation</th>
+            <th>Date</th>
+            <th>More Information</th>
+            <th>Creator</th>
+            </tr>   
+            {% for x in interface %}  
+                <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ x.Router }}</td>
+                <td>{{ x.Newint }}</td>
+                <td>{{ x.Des }}</td>
+                <td>{{ x.Peygiri }}</td>
+                <td>{{ x.IP }}</td>
+                <td>{{ x.VLAN }}</td>
+                <td>{{ x.PE }}</td>
+                <td>{{ x.Encap }}</td>
+                <td>{{ x.Date }}</td>
+                <td>{{ x.Info }}</td>
+                <td>{{ x.theauthor }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+
+{% endblock %} %}  
+                <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ x.Router }}</td>
+                <td>{{ x.Newint }}</td>
+                <td>{{ x.Des }}</td>
+                <td>{{ x.Peygiri }}</td>
+                <td>{{ x.IP }}</td>
+                <td>{{ x.VLAN }}</td>
+                <td>{{ x.PE }}</td>
+                <td>{{ x.Encap }}</td>
+                <td>{{ x.Date }}</td>
+                <td>{{ x.Info }}</td>
+                <td>{{ x.theauthor }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+
+{% endblock %}
