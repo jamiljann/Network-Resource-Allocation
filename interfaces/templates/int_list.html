@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+    {% block title %} Show Interfaces {% endblock %}        
+    {% block main_heading %} Table Contains {{ numbers }} records  {% endblock %}
+    {% block header_content %}{% endblock %}
+       
+    {% block body %} 
+    <table border="1" id="myTable">
+      <tr>
+          <th>No.</th>
+          <th>Router Name</th>
+          <th>Interface Name</th> 
+          <th>Description</th>
+          <th>ID</th>
+          <th>IP</th>
+          <th>Profile</th>
+          <th>VPN</th>
+          <th>Encapsulation</th> 
+          <th>Interface Type</th>                  
+      </tr>   
+        {% for x in members %}  
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ x.Router_Name }}</td>
+            <td>{{ x.int_Name }}</td>
+            <td>{{ x.Description }}</td>
+            <td>{{ x.int_ID }}</td>
+            <td>{{ x.IP }}</td>
+            <td>{{ x.Profile }}</td>
+            <td>{{ x.VPN }}</td>
+            <td>{{ x.Encapsulation }}</td>
+            <td>{{ x.Int_type }}</td>
+
+          </tr>  
+        {% endfor %}
+    </table>         
+
+    {% endblock %}

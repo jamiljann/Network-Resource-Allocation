@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+    {% block title %} Show Routers {% endblock %}        
+    {% block main_heading %} Table Contains {{ numbers }} records  {% endblock %}
+    {% block header_content %}{% endblock %}
+       
+    {% block body %} 
+    <table border="1" id="myTable">
+      <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>IP</th>                           
+      </tr>   
+        {% for x in members %}  
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ x.Name }}</td>
+            <td>{{ x.Type }}</td>
+            <td>{{ x.IP }}</td>
+          </tr>  
+        {% endfor %}
+    </table>         
+
+    {% endblock %}

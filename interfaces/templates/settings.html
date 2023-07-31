@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} DATA Department of TCI Khorasan{% endblock %}
+{% block main_heading %}Working on Interface Table{% endblock %}       
+{% block site_css %} {% endblock %}           
+{% block body %}  
+    <p>
+        <ul>
+            <li><a href="{% url 'interfaces:update' %}">Update database</a></li>
+            <li><a href="{% url 'interfaces:delete' %}">Delete database</a></li>
+            <li><a href="{% url 'interfaces:int_list' %}">Interface list</a></li>
+            <li><a href="{% url 'interfaces:router_list' %}">Router list</a></li>
+        </ul>
+    </p>   
+    {% endblock %}
